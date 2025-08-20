@@ -98,12 +98,40 @@
   </div>
 
   <script>
-    // Force external browser open (important for WebView APKs)
-    document.getElementById("downloadLink").addEventListener("click", function(e) {
-      e.preventDefault();
-      var url = this.href;
-      window.open(url, "_system"); // For Android WebView "_system" opens default browser
-    });
+  // Browser detection
+  function isAllowedBrowser() {
+    const ua = navigator.userAgent;
+    return ua.includes("Chrome") || ua.includes("Edg");
+  }
+
+  // Handle download link click
+  document.getElementById("downloadLink").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    if (!isAllowedBrowser()) {
+      alert("This download is only supported in Google Chrome or Microsoft Edge.");
+      return;
+    }
+
+    const url = this.href;
+
+    // For Android WebView or general external opening
+    if (window.cordova || navigator.userAgent.includes("wv")) {
+      window.open(url, "_system");
+    } else {
+      window.open(url, "_blank");
+    }
+  });
+
+  // Optional: block entire page if not Chrome/Edge
+  if (!isAllowedBrowser()) {
+    document.body.innerHTML = "<div style='text-align:center;padding:2rem;font-family:sans-serif;color:#333;'>🚫 This page is only supported in Google Chrome or Microsoft Edge.</div>";
+  }
+</script>
+
+
+
+
   </script>
 </body>
 </html>
