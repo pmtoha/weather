@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NowTerra Update</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+    }
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: #222;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin: 1rem 0;
+    }
+    .download-btn {
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.9rem 1.6rem;
+      background-color: #333;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: 0.3s ease;
+    }
+    .download-btn:hover {
+      background-color: #555;
+    }
+    .download-btn:active {
+      background-color: #111;
+    }
+    .security-note {
+      font-size: 0.95rem;
+      color: #666;
+      margin-top: 15px;
+    }
+    .security-note i {
+      color: #2c7;
+      margin-right: 6px;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="NowTerra.png" alt="NowTerra Logo" class="logo">
+
+    <!-- Title -->
+    <h1>Get NowTerra v1.2.1</h1>
+    <p>Visit our download portal to get the latest version of NowTerra.</p>
+
+    <!-- Download Button -->
+    <a href="https://aitinc.site/NowTerra-APK" class="download-btn" target="_blank" rel="noopener noreferrer" id="downloadLink">
+      Download Now
+    </a>
+
+    <!-- Security Note -->
+    <p class="security-note">
+      <i class="fas fa-shield-alt"></i> 
+      Our APK is 100% safe and free from malware. All downloads are regularly scanned for security threats.
+    </p>
+
+    <!-- Footer -->
+    <footer>Developed by AIT Inc Ltd</footer>
+  </div>
+
+  <script>
+  // Browser detection
+  function isAllowedBrowser() {
+    const ua = navigator.userAgent;
+    return ua.includes("Chrome") || ua.includes("Edg");
+  }
+
+  // Handle download link click
+  document.getElementById("downloadLink").addEventListener("click", function(e) {
+    e.preventDefault();
+
+    if (!isAllowedBrowser()) {
+      alert("This download is only supported in Google Chrome or Microsoft Edge.");
+      return;
+    }
+
+    const url = this.href;
+
+    // For Android WebView or general external opening
+    if (window.cordova || navigator.userAgent.includes("wv")) {
+      window.open(url, "_system");
+    } else {
+      window.open(url, "_blank");
+    }
+  });
+
+  // Optional: block entire page if not Chrome/Edge
+  if (!isAllowedBrowser()) {
+    document.body.innerHTML = "<div style='text-align:center;padding:2rem;font-family:sans-serif;color:#333;'>🚫 This page is only supported in Google Chrome or Microsoft Edge.</div>";
+  }
+</script>
+
+  </script>
+</body>
+</html>
